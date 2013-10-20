@@ -1,3 +1,7 @@
 var Backbone = require('lib/wyatt-backbone');
 
-console.log(new Backbone.View().el);
+var book = new Backbone.Model({id: 12});
+
+book.fetch({success: function (book) {
+	console.log(book);
+}});

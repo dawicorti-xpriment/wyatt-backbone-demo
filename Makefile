@@ -21,3 +21,5 @@ app-prepare:
 	@rsync -ru collection/* Resources/collection/
 	@rsync -ru lib/* Resources/lib/
 	
+clean:
+	rm -rf Resources build
