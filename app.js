@@ -1,16 +1,7 @@
-var Todo = require('todos/model/todo')
-  , TodoList = require('todos/collection/todolist');
+var wyatt = require('tipis/wyatt');
+var appyat = wyatt.render('todos/template/todoapp.yat');
 
-var todo = new Todo();
-
-todo.save({}, {success: function () {
-    new TodoList().fetch({success: function (list) {
-        list.each(function (model) {
-            console.log(model.toJSON());
-            model.destroy();
-        });
-    }});
-}});
+appyat.first({element: 'window'}).open();
 
 
-    
+

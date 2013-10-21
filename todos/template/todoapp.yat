@@ -1,0 +1,41 @@
+{
+  "element": "window",
+  
+  "options": {
+    "backgroundColor": "white",
+    "fullscreen": true,
+    "navBarHidden": true
+  },
+  
+  "tree": [
+    
+    {
+      "element": "label",
+  
+      "options": {
+        "top": 15,
+        "text": "Todos",
+        "color": "black",
+        "font": {
+          "fontSize": 14,
+          "fontFamily": "Helvetica Neue",
+          "fontWeight": "bold"
+        }
+      }
+  
+    },
+    {
+      "element": "textfield",
+
+      "options": {
+        "top": 50,
+        "width": "50%",
+        "font": {
+          "fontSize": 14,
+          "fontFamily": "Helvetica Neue"
+        }
+      }
+    }
+  
+  ]
+}
