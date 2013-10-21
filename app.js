@@ -7,8 +7,10 @@ todo.save({}, {success: function () {
     new TodoList().fetch({success: function (list) {
         list.each(function (model) {
             console.log(model.toJSON());
+            model.destroy();
         });
     }});
 }});
 
 
+    

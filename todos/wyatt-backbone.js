@@ -31,6 +31,8 @@ Backbone.sync = function(method, model, options) {
   model.id = model.id || guid();
 	var doc = db.documentWithID(model.id);
 
+  console.log(method);
+
 	if (_.contains(['create', 'update'], method) && model instanceof Backbone.Model) {
 
     var result = doc.putProperties(model.toJSON());
@@ -48,13 +50,16 @@ Backbone.sync = function(method, model, options) {
       , row
       , models = [];
     while (row = rows.nextRow()) {
-      var instance = collection.create(row.document.userProperties);
-      instance.id = row.documentID;
+      var instance = new collection.model(row.document.userProperties);
+      instance.id = row.document.documentID;
       models.push(instance);
     }
 
     if (options.success) options.success(models);
-	}
+	} else if (method === 'delete' && model instanceof Backbone.Model) {
+    var result = doc.deleteDocument();
+    console.log(result);
+  }
 };
 
 module.exports = Backbone;
