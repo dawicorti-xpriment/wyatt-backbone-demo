@@ -14,12 +14,9 @@ android-prepare: app-prepare
 	@rsync -ru assets/* Resources/android/
 
 app-prepare:
-	@mkdir -p Resources/view Resources/model Resources/collection  Resources/lib
+	@mkdir -p Resources/todos
 	@rsync app.js Resources/
-	@rsync -ru view/* Resources/view/
-	@rsync -ru model/* Resources/model/
-	@rsync -ru collection/* Resources/collection/
-	@rsync -ru lib/* Resources/lib/
+	@rsync -ru todos/* Resources/todos/
 	
 clean:
 	rm -rf Resources build

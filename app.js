@@ -1,7 +1,14 @@
-var Backbone = require('lib/wyatt-backbone');
+var Todo = require('todos/model/todo')
+  , TodoList = require('todos/collection/todolist');
 
-var book = new Backbone.Model({id: 12});
+var todo = new Todo();
 
-book.fetch({success: function (book) {
-	console.log(book);
+todo.save({}, {success: function () {
+    new TodoList().fetch({success: function (list) {
+        list.each(function (model) {
+            console.log(model.toJSON());
+        });
+    }});
 }});
+
+

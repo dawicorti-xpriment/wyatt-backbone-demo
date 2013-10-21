@@ -1,3 +1,5 @@
+var Backbone = require('todos/wyatt-backbone');
+
 // Todo Model
 // ----------
 
@@ -8,7 +10,7 @@ module.exports = Backbone.Model.extend({
   defaults: function() {
     return {
       title: "empty todo...",
-      order: Todos.nextOrder(),
+      order: 0,
       done: false
     };
   },
