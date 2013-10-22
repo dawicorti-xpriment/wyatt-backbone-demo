@@ -4,6 +4,7 @@ var wyatt = require('tipis/wyatt');
 var manager = require('com.obscure.titouchdb').databaseManager;
 var db = manager.createDatabaseNamed('todos');
 
+
 function s4() {
   return Math.floor((1 + Math.random()) * 0x10000)
              .toString(16)
@@ -15,23 +16,23 @@ function guid() {
          s4() + '-' + s4() + s4() + s4();
 }
 
-Backbone.View.prototype.type = 'View';
+var View = Backbone.View.extend({
 
-Backbone.View.prototype._ensureElement = function () {
-  if (!this.el) {
-    this.yat = wyatt.yat({'@type': 'View'});
-    this.$el = this.yat.first({type: 'View'});
-    this.el = this.$el.ui;
+  _ensureElement: function () {
+    if (!this.el) {
+      var template = {element: 'View'};
+      this.$el = wyatt.yat(template).first(template);
+      this.el = this.$el.ui;
+    }
   }
-};
+
+});
 
 Backbone.sync = function(method, model, options) {
 	options = options || {};
 
   model.id = model.id || guid();
 	var doc = db.documentWithID(model.id);
-
-  console.log(method);
 
 	if (_.contains(['create', 'update'], method) && model instanceof Backbone.Model) {
 
@@ -57,9 +58,10 @@ Backbone.sync = function(method, model, options) {
 
     if (options.success) options.success(models);
 	} else if (method === 'delete' && model instanceof Backbone.Model) {
-    var result = doc.deleteDocument();
-    console.log(result);
+    doc.deleteDocument();
   }
 };
 
-module.exports = Backbone;
+module.exports = _.extend(Backbone, {
+  View: View
+});
